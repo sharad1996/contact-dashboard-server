@@ -6,7 +6,8 @@ const userSchema = new mongoose.Schema({
   phoneNumber: { type: Number },
   company: { type: String },
   address: { type: String },
-});
+  color: { type: String },
+}, { timestamps: true });
 
 module.exports = mongoose.model('user', userSchema);
 

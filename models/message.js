@@ -3,10 +3,10 @@ const ObjectId = mongoose.Schema.ObjectId;
 
 const messageSchema = new mongoose.Schema({
   senderId: { type: ObjectId },
-  reviewerId: { type: ObjectId },
-  reviewerName: { type: String },
+  reveiverId: { type: ObjectId },
+  receiverName: { type: String },
   senderName: { type: String },
   message: { type: String },
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model('message', messageSchema);

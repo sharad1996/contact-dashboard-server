@@ -6,7 +6,8 @@ exports.addUser = async function (req, res, next) {
     name: req.body.name,
     phoneNumber: req.body.phoneNumber,
     address: req.body.address,
-    company: req.body.company
+    company: req.body.company,
+    color: "hsl(" + Math.random() * 360 + ", 100%, 75%)"
   };
 
   try {
@@ -14,7 +15,7 @@ exports.addUser = async function (req, res, next) {
     if (!response.length) {
       let user = new User({ ...payload });
       user.save();
-      res.status(200).json({ msg: 'added user successfully', data: user });
+      res.status(200).json({ msg: 'added user successfully', user });
     }
     else {
       res.status(400).json({ msg: 'email already exists' });
@@ -29,7 +30,6 @@ exports.addUser = async function (req, res, next) {
 exports.getUsers = async function (req, res, next) {
   try {
     const response = await User.find();
-    console.log("resposne", response)
     if (response) {
       res.status(200).json(response)
     }
@@ -56,7 +56,6 @@ exports.updateUser = async function (req, res, next) {
       { _id: req.params.id },
       { ...payload },
     )
-    console.log(user)
     res.status(200).json({ msg: 'updated' });
   }
   catch (error) {
